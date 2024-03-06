@@ -25,6 +25,6 @@ public class EventService : IEventService
     }
     public void DeleteEvent(Event body)
     {
-        _dal.DeleteEvent(body);
+        _dal.DeleteEvent(body.Id);
     }
 }

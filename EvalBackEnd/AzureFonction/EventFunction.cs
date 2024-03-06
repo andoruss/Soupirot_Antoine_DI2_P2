@@ -54,7 +54,7 @@ namespace AzureFonction
             }
         }
 
-        [Function("Update")]
+        [Function("UpdateEvent")]
         public void UpdateEvent([HttpTrigger(AuthorizationLevel.Function, "put")] HttpRequestData req)
         {
             var reqBody = req.ReadFromJsonAsync<Event>();
@@ -62,10 +62,10 @@ namespace AzureFonction
         }
 
         [Function("Delete")]
-        public void DeleteEvent([HttpTrigger(AuthorizationLevel.Function, "put")] HttpRequestData req)
+        public async Task DeleteEventAsync([HttpTrigger(AuthorizationLevel.Function, "put")] HttpRequestData req)
         {
-            var reqBody = req.ReadFromJsonAsync<Event>();
-            _serviceQueries.GetEvents();
+            var reqBody = await req.ReadFromJsonAsync<Event>();
+            _service.DeleteEvent(reqBody);
         }
     }
 }

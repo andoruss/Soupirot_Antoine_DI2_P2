@@ -41,9 +41,10 @@ public class EventDAL : IEventDAL
        _context.Events.Update(body);
        _context.SaveChanges();
     }
-    public void DeleteEvent(Event body)
+    public void DeleteEvent(Guid id)
     {
-        _context.Events.Remove(body);
+        var obj = _context.Events.FirstOrDefault(e => e.Id == id);
+        _context.Events.Remove(obj);
         _context.SaveChanges();
     }
 }
