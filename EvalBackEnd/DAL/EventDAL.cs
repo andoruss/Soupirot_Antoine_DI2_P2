@@ -1,5 +1,6 @@
 ﻿using Entities;
 using IDAL;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,5 +29,10 @@ public class EventDAL : IEventDAL
         {
             return null;
         }
+    }
+
+    public async Task<IEnumerable<Event>> GetEvents()
+    {
+         return await _context.Events.ToListAsync();
     }
 }

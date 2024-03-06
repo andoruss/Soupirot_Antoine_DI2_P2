@@ -1,6 +1,7 @@
 using System.Net;
 using Entities;
 using IService;
+using IService.Queries;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
@@ -12,10 +13,12 @@ namespace AzureFonction
     {
 
         private readonly IEventService _service;
+        private readonly IEventQueriesService _serviceQueries;
 
-        public EventFunction(IEventService service)
+        public EventFunction(IEventService service, IEventQueriesService serviceQueries)
         {
            _service = service;
+           _serviceQueries = serviceQueries;
         }
 
         [Function("AddEvent")]
@@ -43,7 +46,7 @@ namespace AzureFonction
             {
                 var reqBody = await req.ReadFromJsonAsync<Event>();
 
-                return await _service.GetEvents();
+                return await _serviceQueries.GetEvents();
             }
             catch (Exception)
             {
