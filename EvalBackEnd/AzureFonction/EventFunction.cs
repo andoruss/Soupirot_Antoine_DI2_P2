@@ -53,5 +53,12 @@ namespace AzureFonction
                 return default;
             }
         }
+
+        [Function("Update")]
+        public void UpdateEvent([HttpTrigger(AuthorizationLevel.Function, "put")] HttpRequestData req, Guid id)
+        {
+            var reqBody = req.ReadFromJsonAsync<Event>();
+            _serviceQueries.GetEvents();
+        }
     }
 }

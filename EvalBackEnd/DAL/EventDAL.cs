@@ -35,4 +35,10 @@ public class EventDAL : IEventDAL
     {
          return await _context.Events.ToListAsync();
     }
+
+    public void UpdateEvent(Event body)
+    {
+       _context.Events.Update(body);
+       _context.SaveChanges();
+    }
 }

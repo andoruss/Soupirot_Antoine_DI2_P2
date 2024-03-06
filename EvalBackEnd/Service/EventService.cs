@@ -18,4 +18,9 @@ public class EventService : IEventService
 
         return response;
     }
+
+    public void UpdateEvent(Event body)
+    {
+        _dal.UpdateEvent(body);
+    }
 }
