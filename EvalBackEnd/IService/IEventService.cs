@@ -6,4 +6,5 @@ public interface IEventService
 {
     Task<Event>? AddEvent(Event eventModel);
     void UpdateEvent(Event body);
+    void DeleteEvent(Event body);
 }

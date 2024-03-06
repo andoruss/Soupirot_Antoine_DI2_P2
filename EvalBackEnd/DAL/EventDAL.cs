@@ -41,4 +41,9 @@ public class EventDAL : IEventDAL
        _context.Events.Update(body);
        _context.SaveChanges();
     }
+    public void DeleteEvent(Event body)
+    {
+        _context.Events.Remove(body);
+        _context.SaveChanges();
+    }
 }

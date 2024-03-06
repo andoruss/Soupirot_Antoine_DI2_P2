@@ -55,7 +55,14 @@ namespace AzureFonction
         }
 
         [Function("Update")]
-        public void UpdateEvent([HttpTrigger(AuthorizationLevel.Function, "put")] HttpRequestData req, Guid id)
+        public void UpdateEvent([HttpTrigger(AuthorizationLevel.Function, "put")] HttpRequestData req)
+        {
+            var reqBody = req.ReadFromJsonAsync<Event>();
+            _serviceQueries.GetEvents();
+        }
+
+        [Function("Delete")]
+        public void DeleteEvent([HttpTrigger(AuthorizationLevel.Function, "put")] HttpRequestData req)
         {
             var reqBody = req.ReadFromJsonAsync<Event>();
             _serviceQueries.GetEvents();

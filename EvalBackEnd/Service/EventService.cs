@@ -23,4 +23,8 @@ public class EventService : IEventService
     {
         _dal.UpdateEvent(body);
     }
+    public void DeleteEvent(Event body)
+    {
+        _dal.DeleteEvent(body);
+    }
 }
